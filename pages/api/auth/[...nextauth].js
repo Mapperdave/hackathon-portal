@@ -21,9 +21,8 @@ const options = {
     linkAccount: ({ created_at, ...data }) => prisma.account.create({ data }),
   },
   callbacks: {
-    async session({ session, token, user }) {
-      session.user.firstName = user.firstName
-      session.user.lastName = user.lastName
+    async session({ session, user }) {
+      session.user = user
       return session
     },
   },
