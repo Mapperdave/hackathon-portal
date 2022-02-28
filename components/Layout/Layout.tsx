@@ -12,10 +12,8 @@ const Layout = ({ showNavbar = true, children }: LayoutProps) => {
   return (
     <div className={styles.container}>
       <Header />
-      <div className={styles.body}>
-        {showNavbar && <Navbar />}
-        <div className={styles.content}>{children}</div>
-      </div>
+      {showNavbar && <Navbar />}
+      <div className={styles.content}>{children}</div>
     </div>
   )
 }

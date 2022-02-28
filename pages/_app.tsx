@@ -7,7 +7,7 @@ interface AuthProps {
 }
 
 function Auth({ children }: AuthProps) {
-  const { data: session, status } = useSession({ required: true })
+  const { data: session } = useSession({ required: true })
   const isUser = !!session?.user
 
   if (isUser) {

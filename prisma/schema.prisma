@@ -53,3 +53,31 @@ model VerificationToken {
 
   @@unique([identifier, token])
 }
+
+model CompanyTier {
+  id            String @id @default(cuid())
+  name          String @unique
+  monetaryValue Int
+  companies     Company[]
+}
+
+model Company {
+  id            String      @id @default(cuid())
+  name          String      @unique
+  companyTier   CompanyTier @relation(fields: [companyTierId], references: [id])
+  companyTierId String      @unique
+  url           String
+  logoColor     String
+  logoWhite     String
+  prizes        Prize[]
+}
+
+model Prize {
+  id            String   @id @default(cuid())
+  name          String   @unique
+  description   String
+  company       Company? @relation(fields: [companyId], references: [id])
+  companyId     String?
+  reward        String
+  monetaryValue Int
+}

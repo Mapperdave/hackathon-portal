@@ -6,7 +6,9 @@ const AccountStatus = () => {
 
   if (status === "loading") {
     return <div>Loading...</div>
-  } else if (status === "authenticated") {
+  }
+
+  if (status === "authenticated") {
     return (
       <Fragment>
         <div>Welcome, {session!.user!.firstName}!</div>

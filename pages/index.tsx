@@ -1,10 +1,9 @@
-import type { GetServerSideProps, NextPage } from "next"
-import { signIn, useSession } from "next-auth/react"
+import type { NextPage } from "next"
 import Layout from "../components/Layout/Layout"
 
 const Home: NextPage = () => {
   return (
-    <Layout showNavbar={false}>
+    <Layout>
       <div />
     </Layout>
   )
