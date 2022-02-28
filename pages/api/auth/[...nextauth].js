@@ -1,4 +1,4 @@
-import NextAuth, { Profile } from "next-auth"
+import NextAuth from "next-auth"
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
 import prisma from "../../../util/prisma"
 import GitHubProvider from "next-auth/providers/github"

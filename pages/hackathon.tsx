@@ -1,4 +1,4 @@
-import { GetStaticProps, NextPage } from "next"
+import { GetStaticProps } from "next"
 import { Fragment } from "react"
 import Layout from "../components/Layout/Layout"
 import { HACKATHON_DESCRIPTION, HACKATHON_NAME } from "../util/constants"
@@ -60,7 +60,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 }
 
-const Hackathon: NextPage<HackathonProps> = ({ companyTiers, prizes }) => {
+const Hackathon = ({ companyTiers, prizes }: HackathonProps) => {
   return (
     <Layout>
       <h1>Hackathon Information</h1>

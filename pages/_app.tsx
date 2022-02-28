@@ -17,7 +17,17 @@ function Auth({ children }: AuthProps) {
   return <div>Loading...</div>
 }
 
-function App({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+interface CustomAppProps extends AppProps {
+  Component: AppProps["Component"] & {
+    auth: boolean
+  }
+  pageProps: AppProps["pageProps"]
+}
+
+function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: CustomAppProps) {
   return (
     <SessionProvider session={session}>
       {Component.auth ? (
