@@ -1,25 +1,38 @@
 import "../styles/globals.css"
 import type { AppProps } from "next/app"
-import { SessionProvider, useSession } from "next-auth/react"
+import { SessionProvider, signIn, useSession } from "next-auth/react"
+import Router from "next/router"
+import Loading from "../components/Loading/Loading"
 
 interface AuthProps {
+  roles: string[]
   children: JSX.Element
 }
 
-function Auth({ children }: AuthProps) {
-  const { data: session } = useSession({ required: true })
+function Auth({ roles, children }: AuthProps) {
+  const { data: session, status } = useSession({ required: true })
   const isUser = !!session?.user
 
-  if (isUser) {
-    return children
+  if (status === "loading") {
+    return <Loading />
   }
 
-  return <div>Loading...</div>
+  if (!isUser) {
+    signIn()
+  }
+
+  if (!roles.includes(session?.user.role ?? "")) {
+    Router.push("/")
+  }
+
+  return children
 }
 
 interface CustomAppProps extends AppProps {
   Component: AppProps["Component"] & {
-    auth: boolean
+    auth: {
+      roles: string[]
+    }
   }
   pageProps: AppProps["pageProps"]
 }
@@ -31,7 +44,7 @@ function App({
   return (
     <SessionProvider session={session}>
       {Component.auth ? (
-        <Auth>
+        <Auth roles={Component.auth.roles}>
           <Component {...pageProps} />
         </Auth>
       ) : (

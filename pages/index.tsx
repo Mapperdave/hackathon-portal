@@ -8,6 +8,4 @@ const Home = () => {
   )
 }
 
-Home.auth = true
-
 export default Home

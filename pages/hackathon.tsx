@@ -101,6 +101,8 @@ const Hackathon = ({ companyTiers, prizes }: HackathonProps) => {
   )
 }
 
-Hackathon.auth = true
+Hackathon.auth = {
+  roles: ["hacker", "volunteer", "mentor", "judge", "sponsor", "admin"],
+}
 
 export default Hackathon
